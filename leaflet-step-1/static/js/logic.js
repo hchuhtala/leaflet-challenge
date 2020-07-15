@@ -14,20 +14,13 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     id: "mapbox/streets-v11",
     accessToken: API_KEY
 }).addTo(map);
+legendTitle = "Magnitude"
 
-// console.log(chroma('red'));
 //API Call
 url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson"
 d3.json(url, function (response) {
     // console.log(response.features[0].properties.mag);
 
-    // let earthquakes = response.features
-    // console.log(earthquakes);
-    // earthquakes.forEach(function (f) {
-    //     console.log(f.properties.mag)
-    //     let mag = f.properties.mag
-    //     console.log(f.geometry.coordinates)
-    // });
     // Create Bubbles
     bubbles = L.bubbleLayer(response, { 
     property: "mag", 
@@ -37,3 +30,4 @@ d3.json(url, function (response) {
     tooltip : false })
     bubbles.addTo(map);
 })
+
